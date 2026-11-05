@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galerija - Andraz_Vimer</title>
+<link rel="stylesheet" href="stil.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">Andraz<span>_</span>Vimer</a>
+    <nav aria-label="Glavni meni">
+      <a href="index.html">Moto kros</a>
+      <a href="osradlje.html">OŠ Radlje ob Dravi</a>
+      <a href="galerija.html" aria-current="page">Galerija</a>
+      <a href="igra.html">Igra</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <p class="kicker" style="color:var(--muted);margin-top:0">Slike</p>
+    <h1 style="color:var(--ink);font-size:clamp(40px,7vw,72px)">Galerija</h1>
+    <p class="text">Slike kroserjev, motorjev in OŠ Radlje ob Dravi. Klikni na sliko za povečavo, med slikami se lahko premikaš s puščicami na tipkovnici.</p>
+
+    <div class="upload" id="upload">
+      <h2>Dodaj svoje slike</h2>
+      <div class="uprow">
+        <label class="btn" for="file">Izberi slike</label>
+        <input class="sr" type="file" id="file" accept="image/*" multiple>
+        <label class="sr" for="cat">Kam spada slika</label>
+        <select id="cat">
+          <option value="moto">Kroserji</option>
+          <option value="motor">Motorji</option>
+          <option value="sola">OŠ Radlje ob Dravi</option>
+        </select>
+        <label class="sr" for="title">Opis slike</label>
+        <input type="text" id="title" placeholder="Opis slike (neobvezno)" maxlength="80">
+      </div>
+      <p class="upmsg" id="upmsg" role="status">Izberi eno ali več slik ali jih povleci sem. Najprej izberi, kam spadajo.</p>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filter slik">
+      <button type="button" data-filter="vse" aria-pressed="true">Vse</button>
+      <button type="button" data-filter="moto" aria-pressed="false">Kroserji</button>
+      <button type="button" data-filter="motor" aria-pressed="false">Motorji</button>
+      <button type="button" data-filter="sola" aria-pressed="false">OŠ Radlje ob Dravi</button>
+    </div>
+
+    <!-- Nova slika: kopiraj en blok <li>...</li> spodaj, spremeni ime datoteke, opis in
+         data-cat ("moto", "motor" ali "sola"). Sliko daj v mapo "slike". -->
+    <ul class="grid" id="grid">
+      <li><figure class="item" data-cat="moto">
+        <a href="slike/moto-kros.jpg" data-caption="Kroser v zraku. Skok čez zemeljski zaplato."><img src="slike/moto-kros.jpg" alt="Voznik motokrosa v zraku nad zemeljskim skokom" loading="lazy"></a>
+        <figcaption>Kroser v zraku<small>Skok čez zemeljski zaplato</small></figcaption>
+      </figure></li>
+      <li><figure class="item" data-cat="moto">
+        <a href="slike/moto-celada.jpg" data-caption="Čelada in oprema. Zaščita glave in telesa."><img src="slike/moto-celada.jpg" alt="Voznik s čelado, očali in dirkalno majico" loading="lazy"></a>
+        <figcaption>Čelada in oprema<small>Zaščita glave in telesa</small></figcaption>
+      </figure></li>
+      <li><figure class="item" data-cat="motor">
+        <a href="slike/moto-sprednje-kolo.jpg" data-caption="Sprednje kolo. Žične naplatke in debele gume."><img src="slike/moto-sprednje-kolo.jpg" alt="Sprednje kolo motokros motorja v zraku" loading="lazy"></a>
+        <figcaption>Sprednje kolo<small>Žične naplatke in debele gume</small></figcaption>
+      </figure></li>
+      <li><figure class="item" data-cat="motor">
+        <a href="slike/moto-zadnje-kolo.jpg" data-caption="Zadnje kolo in prah. Dvigajoči se prah za motorjem."><img src="slike/moto-zadnje-kolo.jpg" alt="Zadnji del motorja in prah nad progo" loading="lazy"></a>
+        <figcaption>Zadnje kolo in prah<small>Dvigajoči se prah za motorjem</small></figcaption>
+      </figure></li>
+      <li><figure class="item contain" data-cat="sola">
+        <a href="slike/os-radlje-logo.png" data-caption="OŠ Radlje ob Dravi. Logotip šole."><img src="slike/os-radlje-logo.png" alt="Logotip OŠ Radlje ob Dravi: srce in sova" loading="lazy"></a>
+        <figcaption>OŠ Radlje ob Dravi<small>Logotip šole</small></figcaption>
+      </figure></li>
+      <li><figure class="item contain" data-cat="sola">
+        <a href="slike/os-radlje-sova.png" data-caption="Sova. Del logotipa šole."><img src="slike/os-radlje-sova.png" alt="Oranžna sova iz logotipa šole" loading="lazy"></a>
+        <figcaption>Sova<small>Del logotipa šole</small></figcaption>
+      </figure></li>
+      <li><figure class="item contain" data-cat="sola">
+        <a href="slike/os-radlje-srce.png" data-caption="Srce. Del logotipa šole."><img src="slike/os-radlje-srce.png" alt="Rumeno srce iz logotipa šole" loading="lazy"></a>
+        <figcaption>Srce<small>Del logotipa šole</small></figcaption>
+      </figure></li>
+    </ul>
+
+    <p class="note">Slike, ki jih dodaš z gumbom, se shranijo samo v tem brskalniku na tem računalniku. Če jih želiš pokazati tudi drugim, sliko shrani v mapo <code>slike</code>, v datoteki <code>galerija.html</code> pa kopiraj en blok <code>&lt;li&gt;</code> in popravi ime datoteke ter opis.</p>
+  </section>
+  <section id="sola" aria-labelledby="sola-h">
+    <h2 id="sola-h">OŠ Radlje ob Dravi</h2>
+    <div class="school" style="margin-top:18px">
+      <div class="logo"><img src="slike/os-radlje-logo.png" alt="Logotip OŠ Radlje ob Dravi" width="498" height="615"></div>
+      <div>
+        <p class="text">Osnovna šola Radlje ob Dravi stoji v kraju Radlje ob Dravi, ki se nahaja v lepi Dravski dolini. Šola je prostor, kjer se učenci učijo, družijo in razvijajo svoje talente. Poleg pouka se učenci udeležujejo različnih dejavnosti, tekmovanj, prireditev in projektov.</p>
+        <p class="text">Šola spodbuja znanje, ustvarjalnost, sodelovanje in prijateljstvo. Učenci se lahko vključujejo v različne interesne dejavnosti ter preživljajo čas s sošolci. Šolsko okolje je namenjeno temu, da se učenci počutijo varno, sprejeto in motivirano za učenje.</p>
+        <div class="btns"><a class="btn" href="osradlje.html">Celoten opis šole</a><a class="btn ghost" style="color:var(--ink);border-color:var(--ink)" href="https://www.osradlje.si" target="_blank" rel="noopener">osradlje.si</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Povečana slika">
+  <button class="x" type="button" id="lbx" aria-label="Zapri">Zapri ✕</button>
+  <button class="pr" type="button" id="lbp" aria-label="Prejšnja slika">‹</button>
+  <img id="lbi" src="" alt="">
+  <p id="lbc"></p>
+  <button class="ne" type="button" id="lbn" aria-label="Naslednja slika">›</button>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Avtor: Andraz_Vimer</span>
+    <a href="https://www.osradlje.si" target="_blank" rel="noopener">OŠ Radlje ob Dravi (osradlje.si)</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var grid = document.getElementById('grid');
+  var buttons = document.querySelectorAll('.filters button');
+  var lb = document.getElementById('lb'), lbi = document.getElementById('lbi'), lbc = document.getElementById('lbc');
+  var upload = document.getElementById('upload'), fileIn = document.getElementById('file');
+  var catSel = document.getElementById('cat'), titleIn = document.getElementById('title'), msg = document.getElementById('upmsg');
+  var filter = 'vse', shown = [], cur = 0, lastFocus = null, db = null;
+  var CAT_NAME = { moto: 'Kroserji', motor: 'Motorji', sola: 'OŠ Radlje ob Dravi' };
+
+  function allItems() { return Array.prototype.slice.call(grid.children); }
+  function visible() { return allItems().filter(function (li) { return !li.hidden; }); }
+  function applyFilter() {
+    allItems().forEach(function (li) {
+      var cat = li.querySelector('figure').getAttribute('data-cat');
+      li.hidden = !(filter === 'vse' || cat === filter);
+    });
+  }
+  function say(text, isErr) { msg.textContent = text; msg.className = 'upmsg' + (isErr ? ' err' : ''); }
+
+  /* Filter */
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () {
+      filter = b.getAttribute('data-filter');
+      buttons.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      applyFilter();
+    });
+  });
+
+  /* Povečava */
+  function show(i) {
+    cur = (i + shown.length) % shown.length;
+    var a = shown[cur].querySelector('a');
+    lbi.src = a.getAttribute('href');
+    lbi.alt = shown[cur].querySelector('img').alt;
+    lbc.textContent = a.getAttribute('data-caption') || '';
+  }
+  function open(li) {
+    shown = visible();
+    lastFocus = document.activeElement;
+    lb.classList.add('open');
+    show(shown.indexOf(li));
+    document.getElementById('lbx').focus();
+  }
+  function close() {
+    lb.classList.remove('open');
+    if (lastFocus) lastFocus.focus();
+  }
+  grid.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a') : null;
+    if (!a || !grid.contains(a)) return;
+    e.preventDefault();
+    open(a.closest('li'));
+  });
+  document.getElementById('lbx').addEventListener('click', close);
+  document.getElementById('lbp').addEventListener('click', function () { show(cur - 1); });
+  document.getElementById('lbn').addEventListener('click', function () { show(cur + 1); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(cur - 1);
+    if (e.key === 'ArrowRight') show(cur + 1);
+  });
+
+  /* Shranjevanje v brskalnik (IndexedDB) */
+  function openDb(done) {
+    try {
+      var r = indexedDB.open('galerija-andraz-vimer', 1);
+      r.onupgradeneeded = function () { r.result.createObjectStore('slike', { keyPath: 'id', autoIncrement: true }); };
+      r.onsuccess = function () { db = r.result; done(); };
+      r.onerror = function () { done(); };
+    } catch (e) { done(); }
+  }
+  function saveRec(rec, done) {
+    if (!db) { done(null); return; }
+    try {
+      var rq = db.transaction('slike', 'readwrite').objectStore('slike').add(rec);
+      rq.onsuccess = function () { done(rq.result); };
+      rq.onerror = function () { done(null); };
+    } catch (e) { done(null); }
+  }
+  function delRec(id) {
+    if (!db || id == null) return;
+    try { db.transaction('slike', 'readwrite').objectStore('slike').delete(id); } catch (e) {}
+  }
+  function loadAll() {
+    if (!db) return;
+    try {
+      var rq = db.transaction('slike').objectStore('slike').getAll();
+      rq.onsuccess = function () { rq.result.forEach(addItem); applyFilter(); };
+    } catch (e) {}
+  }
+
+  /* Nova slika v mreži */
+  function addItem(rec) {
+    var url = URL.createObjectURL(rec.blob);
+    var li = document.createElement('li');
+    var fig = document.createElement('figure');
+    fig.className = 'item';
+    fig.setAttribute('data-cat', rec.cat);
+    var a = document.createElement('a');
+    a.href = url;
+    a.setAttribute('data-caption', rec.title);
+    var img = document.createElement('img');
+    img.src = url;
+    img.alt = rec.title;
+    a.appendChild(img);
+    var cap = document.createElement('figcaption');
+    cap.appendChild(document.createTextNode(rec.title));
+    var small = document.createElement('small');
+    small.textContent = CAT_NAME[rec.cat] || '';
+    cap.appendChild(small);
+    var rm = document.createElement('button');
+    rm.type = 'button';
+    rm.className = 'rm';
+    rm.textContent = 'Odstrani';
+    var armed = false, t = null;
+    rm.addEventListener('click', function () {
+      if (!armed) {
+        armed = true;
+        rm.textContent = 'Res odstrani?';
+        t = setTimeout(function () { armed = false; rm.textContent = 'Odstrani'; }, 3000);
+        return;
+      }
+      clearTimeout(t);
+      delRec(rec.id);
+      URL.revokeObjectURL(url);
+      li.parentNode.removeChild(li);
+    });
+    cap.appendChild(rm);
+    fig.appendChild(a);
+    fig.appendChild(cap);
+    li.appendChild(fig);
+    grid.appendChild(li);
+  }
+
+  /* Obdelava izbranih datotek: pomanjšaj na največ 1600 px */
+  function prepare(file, done) {
+    var url = URL.createObjectURL(file);
+    var im = new Image();
+    im.onload = function () {
+      var w = im.naturalWidth, h = im.naturalHeight, s = Math.min(1, 1600 / Math.max(w, h));
+      var c = document.createElement('canvas');
+      c.width = Math.max(1, Math.round(w * s));
+      c.height = Math.max(1, Math.round(h * s));
+      var x = c.getContext('2d');
+      x.fillStyle = '#fff';
+      x.fillRect(0, 0, c.width, c.height);
+      x.drawImage(im, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(url);
+      c.toBlob(function (b) { done(b); }, 'image/jpeg', 0.86);
+    };
+    im.onerror = function () { URL.revokeObjectURL(url); done(null); };
+    im.src = url;
+  }
+
+  function handleFiles(list) {
+    var files = Array.prototype.slice.call(list).filter(function (f) { return /^image\//.test(f.type) || /\.(jpe?g|png|webp|gif)$/i.test(f.name); });
+    if (!files.length) { say('Izberi sliko (JPG, PNG, WebP ali GIF).', true); return; }
+    var cat = catSel.value, custom = titleIn.value.trim(), ok = 0, bad = 0, kept = true, i = 0;
+    say('Dodajam slike ...');
+    (function next() {
+      if (i >= files.length) {
+        var text = 'Dodanih slik: ' + ok + '.';
+        if (bad) text += ' Teh slik ni bilo mogoče prebrati: ' + bad + '.';
+        if (ok && !kept) text += ' Slike niso shranjene, po osvežitvi strani jih ne bo več.';
+        if (ok && filter !== 'vse' && filter !== cat) text += ' Za ogled izberi filter »' + CAT_NAME[cat] + '« ali »Vse«.';
+        say(text, bad > 0 || !kept);
+        fileIn.value = '';
+        titleIn.value = '';
+        return;
+      }
+      var f = files[i++];
+      prepare(f, function (blob) {
+        if (!blob) { bad++; next(); return; }
+        var title = custom || f.name.replace(/\.[^.]+$/, '').replace(/[_-]+/g, ' ');
+        var rec = { cat: cat, title: title, blob: blob };
+        saveRec(rec, function (id) {
+          if (id == null) kept = false; else rec.id = id;
+          addItem(rec);
+          applyFilter();
+          ok++;
+          next();
+        });
+      });
+    })();
+  }
+
+  fileIn.addEventListener('change', function () { if (fileIn.files.length) handleFiles(fileIn.files); });
+  ['dragenter', 'dragover'].forEach(function (n) {
+    upload.addEventListener(n, function (e) { e.preventDefault(); upload.classList.add('drag'); });
+  });
+  ['dragleave', 'drop'].forEach(function (n) {
+    upload.addEventListener(n, function (e) { e.preventDefault(); upload.classList.remove('drag'); });
+  });
+  upload.addEventListener('drop', function (e) {
+    if (e.dataTransfer && e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
+  });
+
+  openDb(loadAll);
+})();
+</script>
+</body>
+</html>
